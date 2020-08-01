@@ -1,0 +1,26 @@
+extends layouts/layout
+
+block content
+  h1 Admin Console
+  
+  mixin buttons
+    button(class=buttonClass name="add" type="submit") Add
+    button(class=buttonClass name="remove" type="submit") Remove
+  
+  div
+    form(action="book" method="post")
+      label(for='bookId') BookId
+      input(type='text' name="bookId" id="bookId" placeholder="BookId")
+   
+      label(for='bookName') BookName
+      input(type='password' name="password" id="inputPass" placeholder="Bookname")
+      +buttons
+   
+  div
+    form(action="user" method="post")
+      label(for='username') Username
+      input(type='text' name="username" placeholder="Username")
+      
+      label(for='password') Passowrd
+      input(type='text' name="password" placeholder="Password")
+      +buttons
