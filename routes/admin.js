@@ -1,37 +1,30 @@
-var express = require('express');
-var router = express.Router();
-var mongoose = require('mongoose')
-var login = require('../controller/authenticate/login');
+var express = require('express')
+var router = express.Router()
+var login = require('../controller/authenticate/auth')
 
-router.get('/', function(req, res, next) {
-  res.redirect('/admin/login');
-});
-
-router.get('/login', function(req, res, next) {
-  res.render('login');
+router.get('/', function (req, res, next) {
+  res.redirect('/admin/login')
 })
 
-router.get('/console', checkAuth, function(req, res, next) {
-  res.render('admin', {title: 'Admin Console'})
+router.get('/login', function (req, res, next) {
+  res.render('login')
 })
 
-router.post('/login', function(req, res, next) {
-  var username = req.body.username;
-  var password = req.body.password;
-  var loginResult = login(username, password);
-  if(loginResult) {
-    res.redirect('/admin/console')
+router.get('/console', function (req, res, next) {
+  res.send('Please Login!')
+})
+
+router.post('/user', function (req, res, next) {
+  res.send('user Post recieved :)')
+})
+
+router.post('/login', async function (req, res, next) {
+  var loginResult = await login(req.body.username, req.body.password)
+  if (loginResult) {
+    res.render('admin', { title: 'Admin Console' })
   } else {
-    res.redirect('/');
+    res.render('login', { title: 'Try Again', errors: ['Username or password is wrong'] })
   }
 })
 
-function checkAuth(req, res, next) {
-  if(!req.body.username === 'admin') {
-    res.send("You Shouldn't be here!");
-  } else {
-    next();
-  }
-}
-
-module.exports = router;
+module.exports = router

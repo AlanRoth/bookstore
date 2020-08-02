@@ -1,9 +1,18 @@
-doctype html
-form(action="login" method="post")
- label(for='inputUser') Username
- input(type='text' name="username" id="inputUser" placeholder="Username" required autofocus)
+extends layouts/layout
+block content
+  include includes/navbar.pug
+  include includes/errorlist.pug
+  form(action="login" method="post")
+    label(for='inputUser') Username
+    input(type='text' name="username" id="inputUser" placeholder="Username" minlength="2" maxlength="255" required autofocus)
   
- label(for='inputPass') Password
- input(type='password' name="password" id="inputPass" placeholder="Password" required)
+    label(for='inputPass') Password
+    input(type='password' name="password" id="inputPass" placeholder="Password" minlength="7" maxlength="255" required)
   
- button(class=buttonClass type="submit") Sign in
+    button(class=buttonClass type="submit") Sign in
+
+  div(id="signup-div")
+    form(action="signup" method="get")
+      p Not registered?
+      button(class=buttonClass type="submit") Sign up
+      a(class="button-link" href="/signup")

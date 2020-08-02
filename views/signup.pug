@@ -1,0 +1,21 @@
+extends layouts/layout
+block content
+  include includes/navbar.pug
+  include includes/errorlist.pug
+  form(action="signup" method="post")
+    label(for='inputUser') Username
+    input(type='text' name="username" id="inputUser" placeholder="Username" minlength="2" maxlength="255" required autofocus)
+
+    label(for='inputPass') Password
+    input(type='password' name="password" id="inputPass" placeholder="Password" minlength="7" maxlength="255"  required)
+   
+    label(for='inputPass-repeated') Repeat Password
+    input(type='password' name="repeated" id="inputPass-repeated" placeholder="Repeated Password" minlength="7" maxlength="255" required)
+ 
+    button(class=buttonClass type="submit") Sign Up
+ 
+  div(id="signin-div")
+    form(action="login" method="get")
+      p Already Registered?
+      button(class=buttonClass type="submit") Sign In
+      a(class="button-link" href="/login")

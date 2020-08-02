@@ -1,11 +1,5 @@
 doctype html
 div
-  unless userObject === undefined
-    - var user = {name: "guest", isAuthorized: false}
-  if user.isAuthorized
-    p Welcome, #{user.name}
-  else
-    p Guest
-    
-  
+  p Welcome, #{username}
+  a(class="nav-item" href="/login") Sign In/Sign Up
   
