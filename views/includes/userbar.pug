@@ -1,5 +1,7 @@
 doctype html
-div
-  p Welcome, #{username}
-  a(class="nav-item" href="/login") Sign In/Sign Up
+div(class="container")
+  - var user = username
+  - var prompt = user === 'Guest' ? "Sign In/Sign Up" : "Log out"
+  - var redirect = user === 'Guest' ? "/login" : "/logout"
+  p Welcome, #{user} #[a(href=redirect) #{prompt}]
   

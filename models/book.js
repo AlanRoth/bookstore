@@ -4,11 +4,17 @@ var Book = mongoose.model('Book', {
   isbn: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    unique: true
   },
   title: {
     type: String,
     required: true,
+    trim: true
+  },
+  price: {
+    type: String,
+    require: true,
     trim: true
   },
   author: {
@@ -23,6 +29,11 @@ var Book = mongoose.model('Book', {
   },
   image: {
     type: String,
+    required: true,
+    trim: true
+  },
+  stock: {
+    type: Number,
     required: true,
     trim: true
   }

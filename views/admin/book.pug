@@ -1,0 +1,23 @@
+extends ../layouts/layout
+
+block content
+  h1 Admin Console - Book
+  
+  div
+    h3 Update Book
+    form(action="book" method="post")
+      input(type='text' name="isbn" id="bookIsbn" value=isbn placeholder="isbn")
+      br
+      input(type='text' name="title" id="bookTitle" value=title placeholder="Title")
+      br
+      input(type='text' name="price" id="bookPrice" value=price placeholder="Price")
+      br
+      input(type='text' name="author" id="bookAuthor" value=author placeholder="Author")
+      br
+      input(type='text' name="genre" id="bookGenre" value=genre placeholder="Genre")
+      br
+      input(type='text' name="image" id="bookImage" value=image placeholder="File")
+      br
+      input(type='number' name="stock" id="bookStock" value=stock placeholder="Stock")
+      br
+      button(class=buttonClass name="update" value='true' type="submit") Update

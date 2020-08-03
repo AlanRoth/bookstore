@@ -4,10 +4,11 @@ var mongoose = require('mongoose')
 var path = require('path')
 var bodyParser = require('body-parser')
 var session = require('express-session')
+var cookieParser = require('cookie-parser')
 
 var indexRouter = require('./routes/index')
-var usersRouter = require('./routes/users')
 var adminRouter = require('./routes/admin')
+var basketRouter = require('./routes/basket')
 
 var app = express()
 
@@ -17,23 +18,23 @@ var uri = 'mongodb+srv://app-user:app@cluster0.apymg.mongodb.net/bookstore?retry
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
+app.use(express.static('public'))
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use('/', indexRouter)
-app.use('/users', usersRouter)
-app.use('/admin', adminRouter)
+app.use(cookieParser())
+app.use(session({
+  secret: 'secret',
+  cookie: {
+    maxAge: 60000,
+    secure: false
+  }
+}))
 
-// app.use(session({
-//  secret: 'secret',
-//  resave: false,
-//  saveUninitialized: true,
-//  cookie: {
-//    secure: false,
-//    httpOnly: true,
-//    maxAge: 1000 * 60 * 60 * 24
-//  }
-// }))
+app.use('/', indexRouter)
+app.use('/basket', basketRouter)
+app.use('/admin', adminRouter)
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error("Couldn't connect to MongoDB: " + err))

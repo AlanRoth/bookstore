@@ -1,5 +1,12 @@
 doctype html
 div
-  a(class="nav-item" href="/") Home
-  a(class="nav-item" href="/Browse") Browse
-  a(class="nav-item" href="/About") About Us
+  nav(class="navbar navbar-expand-lg navbar-light bg-light")
+    a(class="navbar-brand" href="/") Bookstore
+    div(class="collapse navbar-collapse" id="navbarNav")
+    ul(class="navbar-nav")
+      li(class="nav-item")
+        a(class="nav-link" href="/") Home
+      li(class="nav-item")
+        a(class="nav-link" href="/browse") Browse
+      li(class="nav-item")
+        a(class="nav-link" href="/basket") Basket

@@ -1,0 +1,28 @@
+body {
+  padding: 40px 10px;
+  background-color: #eee;
+}
+.form {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form {
+  display: flex;
+  flex-wrap: wrap;
+}
+.form input {
+  width: 100%;
+  margin: 0px 0 10px;
+}
+.form .btn {
+  flex: 1 0 100%;
+}
+.container .other-button {
+  width: 20%;
+  text-align: center;
+}
+.img-thumbnail {
+  max-height:200px;
+  max-width:200px;
+}

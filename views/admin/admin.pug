@@ -1,0 +1,76 @@
+extends ../layouts/layout
+
+block content
+  h1 Admin Console
+  
+  mixin addButton
+    button(class=buttonClass name="add" value='true' type="submit") Add
+  
+  mixin removeButton
+    button(class=buttonClass name="remove" value='true' type="submit") Remove
+    
+  mixin getButton
+    button(class=buttonClass name="get" type="submit") Get
+  
+  include ../includes/errorlist.pug
+  
+  div
+    h3 Add Book
+    form(action="book" method="post")
+      label(for='isbn') isbn
+      input(type='text' name="isbn" id="bookIsbn" placeholder="isbn")
+      
+      label(for='title') Title
+      input(type='text' name="title" id="bookTitle" placeholder="Title")
+        
+      label(for='price') Price
+      input(type='text' name="price" id="bookPrice" placeholder="Price")
+        
+      label(for='author') Author
+      input(type='text' name="author" id="bookAuthor" placeholder="Author")
+      
+      label(for='genre') Genre
+      input(type='text' name="genre" id="bookGenre" placeholder="Genre")
+        
+      label(for='image') Image File Path
+      input(type='text' name="image" id="bookImage" placeholder="File")
+        
+      label(for='stock') Stock Level
+      input(type='number' name="stock" id="bookStock" placeholder="Stock")
+      +addButton
+  
+  div
+    h3 Get Book
+    form(action="book" method="get")
+      label(for='isbn') isbn
+      input(type='text' name="isbn" placeholder="isbn" required)
+      +getButton
+  
+  div
+    h3 Remove Book
+    form(action="book" method="post")
+      label(for='isbn') isbn
+      input(type='text' name="isbn" placeholder="isbn")
+      +removeButton
+      
+  div
+    h3 Remove User
+    form(action="user" method="post")
+      label(for='username') Username
+      input(type='text' name="username" placeholder="Username")
+      +removeButton
+  div
+    h3 Add User
+    form(action="user" method="post")
+      label(for='username') Username
+      input(type='text' name="username" placeholder="Username")
+      
+      label(for='password') Password
+      input(type='text' name="password" placeholder="password" required)
+      +addButton
+  div
+    h3 Book list
+    if books
+      for book in books
+        label #{book.isbn} #{book.title}
+        br

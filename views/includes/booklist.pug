@@ -1,0 +1,16 @@
+doctype html
+if books
+  - var length = books.length
+  div(class="row")
+    div(class="card-deck")
+      for book in books
+        div(class="col-sm-8")
+          div(class="card border-secondary")
+            img(src=book.image alt="placeholder.png" class="img-thumbnail card-img-top")
+            div(class="card-body book-entry")
+              h5(class="card-title") #{book.title}
+              p(class="card-text") #{book.price}
+              form(action="/basket/addtobasket" method="post")
+                button(class="btn btn-primary" name="addToBasket" value="#{book.isbn}" type="submit") Add To Basket
+
+        
