@@ -1,0 +1,12 @@
+extends layouts/layout
+
+block content  
+  include includes/navbar.pug
+  include includes/userbar.pug
+  
+  if basket
+    for item in basket
+      label #{item}
+      br
+  else
+    label Basket Is Empty!

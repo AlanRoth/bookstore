@@ -11,6 +11,6 @@ if books
               h5(class="card-title") #{book.title}
               p(class="card-text") #{book.price}
               form(action="/basket/addtobasket" method="post")
-                button(class="btn btn-primary" name="addToBasket" value="#{book.isbn}" type="submit") Add To Basket
+                button(class="btn btn-primary" name="addBasket" value=book.isbn type="submit") Add To Basket
 
         

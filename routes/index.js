@@ -5,16 +5,7 @@ var add = require('../controller/database/addUser')
 var validate = require('../controller/util/validate')
 var getUser = require('../controller/database/getUser')
 var getBooks = require('../controller/database/getBooks')
-
-async function getUserSession (req) {
-  if (req.session.userid) {
-    var user = await getUser({ _id: req.session.userid })
-    if (user) {
-      return user
-    }
-    return false
-  }
-}
+var getUserSession = require('../controller/util/getUserSession')
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
