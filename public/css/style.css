@@ -18,6 +18,10 @@ body {
 .form .btn {
   flex: 1 0 100%;
 }
+.form label {
+  width: 100%;
+  margin: 0px 0 10px;
+}
 .container .other-button {
   width: 20%;
   text-align: center;
@@ -25,4 +29,51 @@ body {
 .img-thumbnail {
   max-height:200px;
   max-width:200px;
+}
+.card img {
+  text-align: left;
+  float: left;
+  display: inline-block;
+}
+.ex2 .box-parent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ex2 .box {
+  flex: 1 1 150px;
+  flex: 0 1 150px;
+  margin-left: 150px;
+}
+.basket-entry {
+  text-align: right;
+  vertical-align: text-top;
+  display: inline-block;
+  width: 50%;
+  float: right;
+}
+#nostock-label {
+  font-weight: bold;
+  color: red;
+}
+.order-summary {
+  float: left;
+  padding: 10px;
+}
+.order-summary {
+  background-color: white;
+}
+.order-summary .row {
+  padding: 10px;
+  background-color: white;
+}
+#book-title-small {
+  font-weight: bold;
+}
+.order {
+  background-color: white;
+  padding: 10px;
+}
+.order #order-num {
+  font-weight: bold;
 }

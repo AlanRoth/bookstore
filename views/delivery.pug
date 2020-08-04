@@ -1,0 +1,38 @@
+extends layouts/layout
+
+block content
+  include includes/navbar.pug
+  include includes/userbar.pug
+  
+  div(class="container order-summary")
+    div(class="row")
+      div(class="col-sm")
+        h5 Order Summary
+        if basket.length != 0
+          - var total = 0.0
+          for book in basket
+            br
+            label(id="book-title-small") #{book.title} #[label £#{book.price}]
+            - total = total + parseFloat(book.price)
+        br
+        label(id="shipping-label") Free Shipping
+        br
+        label(id="total-label") total: £#{total}
+        
+    div(class="row")
+      div(class="col")
+        form(action="/checkout/order" method="post")
+          input(type='hidden' name="Username" id="_username" value=user required)
+          input(type='hidden' name="Total" id="_totalprice" value=total required)
+          
+          label(for='inputAddress') Address
+          input(type='text' class="form-input" name="Address" id="inputAddress" placeholder="Address" minlength="1" maxlength="255" required autofocus)
+
+          label(for='inputPostcode') Postcode
+          input(type='text' class="form-input" name="Postcode" id="inputPostcode" placeholder="Postcode" minlength="6" maxlength="6" required)
+
+          label(for='inputCountry') County
+          select( name='County' id='country-select')
+            option(value="West Midlands") West Midlands
+          br
+          button(class="btn btn-primary" name="order" value=basket type="submit") Order

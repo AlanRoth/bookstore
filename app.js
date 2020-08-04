@@ -9,6 +9,7 @@ var cookieParser = require('cookie-parser')
 var indexRouter = require('./routes/index')
 var adminRouter = require('./routes/admin')
 var basketRouter = require('./routes/basket')
+var checkoutRouter = require('./routes/checkout')
 
 var app = express()
 
@@ -35,6 +36,7 @@ app.use(session({
 app.use('/', indexRouter)
 app.use('/basket', basketRouter)
 app.use('/admin', adminRouter)
+app.use('/checkout', checkoutRouter)
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error("Couldn't connect to MongoDB: " + err))

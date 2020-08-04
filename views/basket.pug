@@ -1,12 +1,27 @@
 extends layouts/layout
 
-block content  
+block content
   include includes/navbar.pug
   include includes/userbar.pug
+  include includes/basketList.pug
   
-  if basket
-    for item in basket
-      label #{item}
+  div(class="container order-summary")
+    if basket.length != 0
+      - var total = 0.0
+      for book in basket
+        - total = total + parseFloat(book.price)
+      label(id="total-label") total: £#{total}
       br
-  else
-    label Basket Is Empty!
+      label(id="shipping-label") Free Shipping
+  div(class="container")
+    if basket.length != 0
+      if username === 'Guest'
+        form(action="/login" methd="get" id="login")
+          div(class="form-group")
+            label(for="signin") To Place A Order, Please Sign In!
+            button(class="btn btn-primary" name="signin" type="submit") Sign In/ Sign Up
+      else 
+        form(action="/checkout/delivery" method="post" id="order-form")
+          button(class="btn btn-primary" name="order" value=basket type="submit") Arrange Delivery
+    else
+      label(id="empty-basket-label") Basket is Empty!

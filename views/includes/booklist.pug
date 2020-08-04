@@ -1,6 +1,5 @@
 doctype html
 if books
-  - var length = books.length
   div(class="row")
     div(class="card-deck")
       for book in books
@@ -9,8 +8,12 @@ if books
             img(src=book.image alt="placeholder.png" class="img-thumbnail card-img-top")
             div(class="card-body book-entry")
               h5(class="card-title") #{book.title}
+              p(class="cart-text") By #{book.author}
               p(class="card-text") #{book.price}
               form(action="/basket/addtobasket" method="post")
-                button(class="btn btn-primary" name="addBasket" value=book.isbn type="submit") Add To Basket
+                if book.stock === 0
+                  label(id="nostock-label") Out of Stock
+                else
+                  button(class="btn btn-primary" name="addBasket" value=book.isbn type="submit") Add To Basket
 
         

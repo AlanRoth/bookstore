@@ -8,9 +8,6 @@ var getBooks = async function (filter) {
     if (result === undefined) {
       return false
     }
-
-    console.log(result)
-
     return result
   })
 }

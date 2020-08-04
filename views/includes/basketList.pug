@@ -1,0 +1,10 @@
+if basket
+  div(class="container box-parent")
+    for item in basket
+      div(class="container")
+        img(src=item.image alt="placeholder.png" class="img-thumbnail card-img-top")
+        div(class="basket-entry")
+          h5 #{item.title}
+          p #{item.price}
+            form(action="/basket/removefrombasket" method="post")
+              button(class="btn btn-primary" name="remove" value=item.isbn type="submit") Remove

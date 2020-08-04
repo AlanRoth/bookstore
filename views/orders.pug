@@ -1,0 +1,24 @@
+extends layouts/layout
+
+block content
+  include includes/navbar.pug
+  include includes/userbar.pug
+  
+  if username === 'Guest'
+    div(class="container")
+      label #[a(href="/login") Sign In] To See Your Orders!
+  
+  if orders
+    - var orderNum = 0;
+    for order in orders
+      - orderNum++;
+      div(class="container order")
+        Label(id="order-num") Order Number: #{orderNum}
+        br
+        label Order Total: £#{order.total}
+        br
+        for item in order.order
+          - var Json = JSON.parse(item)
+          for x in Json
+            label #{x.title} By #[label #{x.author}]
+            br

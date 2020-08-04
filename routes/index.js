@@ -6,6 +6,7 @@ var validate = require('../controller/util/validate')
 var getUser = require('../controller/database/getUser')
 var getBooks = require('../controller/database/getBooks')
 var getUserSession = require('../controller/util/getUserSession')
+var getOrders = require('../controller/database/getOrders')
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
@@ -68,7 +69,8 @@ router.post('/signup', async function (req, res, next) {
   var result = add(req.body.username, req.body.password)
   if (result) {
     req.session.userid = await getUser({ username: req.body.username })
-    res.render('index', { title: 'Welcome', username: req.body.username })
+    // res.render('index', { title: 'Welcome', username: req.body.username })
+    res.redirect('/')
   } else {
     errors.push('Something went wrong! Try again')
     res.render('signup', { title: 'Try Again', errors: errors })
@@ -86,6 +88,15 @@ router.get('/browse', async function (req, res, next) {
     username = user.username
   }
   res.render('browse', { username: username, books: await getBooks({}) })
+})
+
+router.get('/orders', async function (req, res, next) {
+  var user = await getUserSession(req)
+  var username = 'Guest'
+  if (user) {
+    username = user.username
+  }
+  res.render('orders', { username: username, orders: await getOrders({ user: username }) })
 })
 
 module.exports = router
