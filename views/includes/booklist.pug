@@ -9,7 +9,7 @@ if books
             div(class="card-body book-entry")
               h5(class="card-title") #{book.title}
               p(class="cart-text") By #{book.author}
-              p(class="card-text") #{book.price}
+              p(class="card-text") £#{book.price}
               form(action="/basket/addtobasket" method="post")
                 if book.stock === 0
                   label(id="nostock-label") Out of Stock
