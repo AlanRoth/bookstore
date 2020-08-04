@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var getUserSession = require('../controller/util/getUserSession')
-var getBook = require('../controller/database/getbook')
+var getBook = require('../controller/database/getBook.js')
 var addOrder = require('../controller/database/addOrder')
 
 router.get('/basket', async function (req, res, next) {
